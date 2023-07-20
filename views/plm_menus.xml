@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top menu item -->
+    <menuitem id="menu_plm_root" name="PLM" sequence="300" web_icon="plm_planning,static/description/planning.png" groups="base.group_user"/>
+    <menuitem id="menu_plm" name="Planning" parent="menu_plm_root" sequence="0"/>
+        <menuitem id="plm_planning" name="Planning" parent="menu_plm" action="plm_planning.plm_planning_action" sequence="1"/>
+</odoo>

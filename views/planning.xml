@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record id='plm_planning_planning_tree_view' model='ir.ui.view'>
+			<field name="name">plm.planning.planning.tree.view</field>
+			<field name="model">plm.planning</field>
+			<field name="arch" type="xml">
+                <tree string="PLM Planning">
+                    <field name="active" invisible="1" />
+                    <field name="valid_from"/>
+                    <field name="valid_to"/>
+                    <field name="total_operator"/>
+                    <field name="electric_units"/>
+                    <field name="water_units"/>
+                    <field name="drying_speed"/>
+                    <field name="nominal_speed"/>
+                    <field name="create_date" optional="1"/>
+                    <field name="write_date" optional="1"/>
+                </tree>
+			</field>
+		</record>
+
+		<record id='plm_planning_planning_form_view' model='ir.ui.view'>
+			<field name="name">plm.planning.planning.form.view</field>
+			<field name="model">plm.planning</field>
+			<field name="arch" type="xml">
+                <form string="PLM Planning">
+                    <field name="active" invisible="1" />
+                    <sheet>
+                        <group col="2">
+                            <group>
+                                <label for="valid_from" string="Valid Dates"/>
+                                <div class="o_row">
+                                    <field name="valid_from" widget="daterange" options="{&quot;related_end_date&quot;: &quot;valid_to&quot;}"/>
+                                    <i class="fa fa-long-arrow-right mx-1" aria-label="Arrow icon" title="Arrow"/>
+                                    <field name="valid_to" widget="daterange" options="{&quot;related_start_date&quot;: &quot;valid_from&quot;}"/>
+                                </div>
+                                <field name="create_date"/>
+                                <field name="write_date"/>
+                                <field name="broiler_operator"/>
+                                <field name="raw_operator"/>
+                                <field name="total_operator"/>
+                            </group>
+                            <group>
+                                <field name="electric_units"/>
+                                <field name="water_units"/>
+                                <field name="drying_speed"/>
+                                <field name="nominal_speed"/>
+                                <field name="output"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <!--<div class="o_attachment_preview" options="{'preview_priority_type': 'pdf'}"/>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div> -->            
+                </form>
+			</field>
+		</record>
+
+        <record id="plm_planning_action" model="ir.actions.act_window">
+            <field name="name">PLM Planning</field>
+            <field name="res_model">plm.planning</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="plm_planning_planning_tree_view"/>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new PLM record
+                </p><p>
+                    Indicate allocated resources.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>
